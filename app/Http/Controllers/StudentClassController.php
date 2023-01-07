@@ -25,11 +25,18 @@ class StudentClassController extends Controller
     public function store(StudentClassCreateRequest $request)
     {
         try {
-            $studentClass = StudentClass::create($request->all());
-            return response()->json([
-                'studentClass' => $studentClass,
-                'message' => 'Student Class created successfully'
-            ], 201);
+            $studentClassExists = StudentClass::where('student_id', $request->student_id)->where('s_class_id', $request->s_class_id)->get();
+            if ($studentClassExists->count() > 0) {
+                return response()->json([
+                    'message' => 'Student already has this class'
+                ], 400);
+            } else {
+                $studentClass = StudentClass::create($request->all());
+                return response()->json([
+                    'studentClass' => $studentClass,
+                    'message' => 'Student Class created successfully'
+                ], 201);
+            }
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error creating Student Class'

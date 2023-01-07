@@ -36,4 +36,19 @@ class StudentController extends Controller
             ], 500);
         }
     }
+
+    public function show($id)
+    {
+        // Obtener las clases que tiene el estudiante y obtener la materia de cada clase
+        $student = Student::with('studentClasses.sClass.subject')->where('id', $id)->get();
+        if ($student->count() > 0) {
+            return response()->json([
+                'student' => $student
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'No Student found'
+            ], 404);
+        }
+    }
 }

@@ -26,11 +26,18 @@ class SubjectController extends Controller
     public function store(SubjectCreateRequest $request)
     {
         try {
-            $subject = Subject::create($request->all());
-            return response()->json([
-                'subject' => $subject,
-                'message' => 'Subject created successfully'
-            ], 201);
+            $subjectExists = Subject::where('name', $request->name)->where('teacher_id', $request->teacher_id)->get();
+            if ($subjectExists->count() > 0) {
+                return response()->json([
+                    'message' => 'Subject already exists for this teacher'
+                ], 400);
+            }else{
+                $subject = Subject::create($request->all());
+                return response()->json([
+                    'subject' => $subject,
+                    'message' => 'Subject created successfully'
+                ], 201);
+            }
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error creating subject'

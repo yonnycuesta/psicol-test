@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class SClassController extends Controller
 {
-    
+
     public function index()
     {
         $sClasses = sClass::with('teacher', 'subject')->get();
@@ -26,11 +26,17 @@ class SClassController extends Controller
     public function store(sClassCreateRequest $request)
     {
         try {
-            $sClass = sClass::create($request->all());
-            return response()->json([
-                'sClass' => $sClass,
-                'message' => 'Class created successfully'
-            ], 201);
+            $sClassExists = sClass::where('teacher_id', $request->teacher_id)->where('day', $request->day)->where('hour', $request->hour)->get();
+            if ($sClassExists->count() > 0) {
+                return response()->json([
+                    'message' => 'El profesor ya tiene una clase ese dia y hora'
+                ], 400);
+            } else {
+                $sClass = sClass::create($request->all());
+                return response()->json([
+                    'sClass' => $sClass
+                ], 201);
+            }
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error creating class'
