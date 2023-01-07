@@ -33,11 +33,19 @@
                 {{-- <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Home') }}
                 </a>                 --}}
-                    <router-link to="/home" class="myLink">Materias</router-link>
-                    <router-link to="/teachers" class="myLink">Profesores</router-link>
-                    <router-link to="/students" class="myLink">Estudiantes</router-link>
-                    <router-link to="/classes" class="myLink">Clases</router-link>
-                    <router-link to="/enrollments" class="myLink">Matrículas</router-link>
+                  @if (Route::has('login'))
+                    <div class="top-right links">
+                        @auth
+                        <router-link to="/home" class="myLink">Materias</router-link>
+                        <router-link to="/teachers" class="myLink">Profesores</router-link>
+                        <router-link to="/students" class="myLink">Estudiantes</router-link>
+                        <router-link to="/classes" class="myLink">Clases</router-link>
+                        <router-link to="/enrollments" class="myLink">Matrículas</router-link>
+                        @else
+                        @endauth
+                    </div>
+                @endif
+
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
