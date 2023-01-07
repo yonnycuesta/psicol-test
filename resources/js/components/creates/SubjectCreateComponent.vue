@@ -4,7 +4,7 @@
       <div class="col-md-8 col-sm-8">
         <div class="card">
           <div class="card-header">Nueva Materia
-            <router-link href="#" to="/subjects" class="btn btn-dark float-right">Listado</router-link>
+            <router-link href="#" to="/subjects" class="btn btn-dark float-right">Listado <i class="fas fa-arrow-left-long"></i></router-link>
           </div>
           <div class="card-body">
             <form

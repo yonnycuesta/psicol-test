@@ -10,7 +10,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalSubjects">Marerias Impartidas</h5>
+            <h5 class="modal-title" id="modalSubjects">Materias Impartidas</h5>
             <button
               type="button"
               class="close"
@@ -21,7 +21,24 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">...</div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6" v-for="subject in subjects" :key="subject.id">
+            <div class="card">
+              <div class="card-header">
+                {{ subject.name }}
+              </div>
+              <div class="card-body">
+                <p class="card-text">Área de conocimiento: {{ subject.knowledge_area}}</p>
+                <p class="card-text">Créditos: {{ subject.credits }}</p>
+                <p class="card-text">Tipo: {{ subject.type }}</p>
+                <p class="card-text">Código: {{ subject.code }}</p>
+                <p class="card-text">Profesor: {{subject.teacherName}}</p>
+              </div>
+            </div>
+            </div>
+            </div>
+          </div>
           <div class="modal-footer">
             <button
               type="button"
@@ -39,7 +56,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">Listado de Profesores
-            <router-link href="#" to="/teachers/create" class="btn btn-primary float-right">Nuevo</router-link>
+            <router-link href="#" to="/teachers/create" class="btn btn-primary float-right">Nuevo <i class="fas fa-plus"></i></router-link>
           </div>
           <div class="card-body">
             <table class="table">
@@ -118,6 +135,7 @@ export default {
     },
 
     showModalSubject(id) {
+      $("#modalSubjects").modal("show");
       axios
         .get("/teachers/subjects/" + id)
         .then((response) => {

@@ -37,6 +37,11 @@ const routes = [
         component: () => import("../components/ClassComponent.vue")
     },
     {
+        path: '/classes/create',
+        name: 'classes.create',
+        component: () => import("../components/creates/ClassCreateComponent.vue")
+    },
+    {
         path: '/enrollments',
         name: 'enrollments',
         component: () => import("../components/EnrollmentComponent.vue")

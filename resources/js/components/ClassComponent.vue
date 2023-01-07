@@ -1,20 +1,9 @@
 <template>
   <div class="container">
     <div class="row justify-content-center">
-      <!-- <div class="col-md-10">
-        <div class="card">
-          <div class="card-header">Estudiante Component</div>
-          <div class="card-body">
-            I'm a student component. Soy un componente de estudiante.
-            {{ name }}
-            <input type="text" v-model="name" class="form-control" />
-          </div>
-        </div>
-      </div> -->
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header">Listado de Clases
-          </div>
+          <div class="card-header">Listado de Clases</div>
           <div class="card-body">
             <table class="table">
               <thead>
