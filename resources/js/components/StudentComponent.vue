@@ -33,6 +33,7 @@
                 <p class="card-text">Créditos: {{ sSubject.credits }}</p>
                 <p class="card-text">Tipo: {{ sSubject.type }}</p>
                 <p class="card-text">Código: {{ sSubject.code }}</p>
+                <p class="card-text">Profesor: {{sSubject.teacherName}}</p>
               </div>
             </div>
             </div>

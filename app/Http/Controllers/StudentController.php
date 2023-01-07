@@ -29,6 +29,7 @@ class StudentController extends Controller
         $subjects = [];
         foreach ($student[0]->studentClasses as $studentClass) {
             $subjects[] = $studentClass->sClass->subject;
+            $subjects[count($subjects) - 1]['teacherName'] = $studentClass->sClass->teacher->name . ' ' . $studentClass->sClass->teacher->lastname;
         }
         if ($student->count() > 0) {
             return response()->json([
