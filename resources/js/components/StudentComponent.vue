@@ -130,9 +130,9 @@ export default {
     showModalSubject(id) {
       // $("#exampleModal").modal("show");
       axios
-        .get("/students/" + id)
+        .get("/students/subjects/" + id)
         .then((response) => {
-          this.studentSubjects = response.data.student;
+          this.studentSubjects = response.data;
           console.log('Subjects',this.studentSubjects);
         })
         .catch((error) => {

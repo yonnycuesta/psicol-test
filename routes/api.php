@@ -32,3 +32,5 @@ Route::apiResource('student-classes', StudentClassController::class);
 Route::apiResource('enrollments', EnrollmentController::class);
 
 Route::get('teachers/subjects/{id}', [TeacherController::class, 'showSubjects']);
+Route::get('students/subjects/{id}', [StudentController::class, 'showSubjects']);
+

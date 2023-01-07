@@ -25,11 +25,15 @@ class StudentController extends Controller
     // obtener las materias que tiene el estudiante
     public function showSubjects($id)
     {
-        // Obtener las materia de cada clase que tiene el estudiante
-        $student = Student::with('subjects')->where('id', $id)->get();
+        $student = Student::with('studentClasses.sClass.subject')->where('id', $id)->get();
+        $subjects = [];
+        foreach ($student[0]->studentClasses as $studentClass) {
+            $subjects[] = $studentClass->sClass->subject;
+        }
         if ($student->count() > 0) {
             return response()->json([
-                'student' => $student
+                'student' => $student,
+                'subjects' => $subjects
             ], 200);
         } else {
             return response()->json([
