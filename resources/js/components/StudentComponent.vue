@@ -2,34 +2,51 @@
   <div class="container">
     <div
       class="modal fade"
-      id="exampleModal"
+      id="studentModal"
       tabindex="-1"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="studentModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="studentModalLabel">Materias</h5>
             <button
               type="button"
               class="close"
+              @click="closeModalSubject()"
               data-dismiss="modal"
               aria-label="Close"
             >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">...</div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6" v-for="sSubject in studentSubjects" :key="sSubject.id">
+            <div class="card">
+              <div class="card-header">
+                {{ sSubject.name }}
+              </div>
+              <div class="card-body">
+                <p class="card-text">Área de conocimiento: {{ sSubject.knowledge_area}}</p>
+                <p class="card-text">Créditos: {{ sSubject.credits }}</p>
+                <p class="card-text">Tipo: {{ sSubject.type }}</p>
+                <p class="card-text">Código: {{ sSubject.code }}</p>
+              </div>
+            </div>
+            </div>
+            </div>
+          </div>
           <div class="modal-footer">
             <button
               type="button"
+              @click="closeModalSubject()"
               class="btn btn-secondary"
               data-dismiss="modal"
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
@@ -128,16 +145,20 @@ export default {
     },
 
     showModalSubject(id) {
-      // $("#exampleModal").modal("show");
+      $("#studentModal").modal("show");
       axios
         .get("/students/subjects/" + id)
         .then((response) => {
-          this.studentSubjects = response.data;
+          this.studentSubjects = response.data.subjects;
           console.log('Subjects',this.studentSubjects);
         })
         .catch((error) => {
           console.log(error);
         });
+    },
+
+    closeModalSubject() {
+      $("#studentModal").modal("hide");
     },
   },
 };

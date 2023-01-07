@@ -32,7 +32,6 @@ class StudentController extends Controller
         }
         if ($student->count() > 0) {
             return response()->json([
-                'student' => $student,
                 'subjects' => $subjects
             ], 200);
         } else {
