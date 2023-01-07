@@ -12,6 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -28,12 +29,14 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                {{-- <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Home') }}
-                </a>                
-                    <router-link to="/courses" class="myLink">Cursos</router-link>
-                    <router-link to="/courses" class="myLink">Profesores</router-link>
+                </a>                 --}}
+                    <router-link to="/subjects" class="myLink">Materias</router-link>
+                    <router-link to="/teachers" class="myLink">Profesores</router-link>
                     <router-link to="/students" class="myLink">Estudiantes</router-link>
+                    <router-link to="/classes" class="myLink">Clases</router-link>
+                    <router-link to="/enrollments" class="myLink">Matrículas</router-link>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

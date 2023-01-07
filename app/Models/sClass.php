@@ -28,6 +28,6 @@ class sClass extends Model
 
     public function student()
     {
-        return $this->belongsToMany(Student::class);
+        return $this->belongsToMany(Student::class, 'student_classes');
     }
 }

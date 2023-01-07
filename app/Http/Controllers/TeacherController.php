@@ -13,7 +13,7 @@ class TeacherController extends Controller
         $teachers = Teacher::with('subjects','sClass')->get();
         if ($teachers->count() > 0) {
             return response()->json([
-                'Teachers' => $teachers
+                'teachers' => $teachers
             ], 200);
         } else {
             return response()->json([

@@ -6,7 +6,7 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
-
+import axios from 'axios';
 import {router} from './routes/index';
 
 /**
@@ -20,27 +20,21 @@ const app = createApp({});
 import CourseComponent from './components/CourseComponent.vue';
 import HomeComponent from './components/HomeComponent.vue';
 import StudentComponent from './components/StudentComponent.vue';
+import TeacherComponent from './components/TeacherComponent.vue';
+import SubjectComponent from './components/SubjectComponent.vue';
+import ClassComponent from './components/ClassComponent.vue';
+import EnrollmentComponent from './components/EnrollmentComponent.vue';
 
 app.component('course-component', CourseComponent);
 app.component('home-component', HomeComponent);
 app.component('student-component', StudentComponent);
+app.component('teacher-component', TeacherComponent);
+app.component('subject-component', SubjectComponent);
+app.component('class-component', ClassComponent);
+app.component('enrollment-component', EnrollmentComponent);
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+// API URL
+axios.defaults.baseURL = 'http://localhost:8000/api';
 
-// Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
-//     app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
-// });
-
-/**
- * Finally, we will attach the application instance to a HTML element with
- * an "id" attribute of "app". This element is included with the "auth"
- * scaffolding. Otherwise, you will need to add an element yourself.
- */
-app.use(router);
+app.use(router, axios);
 app.mount('#app');

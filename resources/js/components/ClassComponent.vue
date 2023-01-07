@@ -13,34 +13,29 @@
       </div> -->
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header">Listado de Estudiantes</div>
+          <div class="card-header">Listado de Clases</div>
           <div class="card-body">
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">DNI</th>
+                  <th scope="col">Día</th>
                   <th scope="col">Nombre</th>
-                  <th scope="col">Correo</th>
-                  <th scope="col">Teléfono</th>
-                  <th scope="col">Dirección</th>
-                  <th scope="col">Ciudad</th>
+                  <th scope="col">Hora</th>
+                  <th scope="col">Profesor</th>
+                  <th scope="col">N° Estudiantes</th>
                   <th scope="col">Acciones</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="student in students" :key="student.id">
-                    <td>{{ student.dni }}</td>
-                    <td>{{ student.name }}</td>
-                    <td>{{ student.email }}</td>
-                    <td>{{ student.phone }}</td>
-                    <td>{{ student.address }}</td>
-                    <td>{{ student.city }}</td>
+                <tr v-for="classe in classes" :key="classe.id">
+                    <td>{{ classe.day }}</td>
+                    <td>{{ classe.subject.name }}</td>
+                    <td>{{ classe.hour }}</td>
+                    <td>{{ classe.teacher.name }}</td>
+                    <td>{{ classe.student.length }}</td>
                     <td>
-                        <a href="#" class="btn btn-dark m-1" title="Ver Clases">
-                            <i class="fas fa-eye">C</i>
-                        </a>
-                        <a href="#" class="btn btn-secondary m-1" title="Ver Materias">
-                            <i class="fas fa-eye">M</i>
+                        <a href="#" class="btn btn-secondary m-1" title="Ver Estudiantes">
+                            <i class="fas fa-eye"> E</i>
                         </a>
                     </td>
                 </tr>
@@ -57,23 +52,23 @@
 import axios from "axios";
 
 export default {
-  name: "StudentComponent",
+  name: "ClassComponent",
   data() {
     return {
       name: "",
-      students: [],
+      classes: [],
     };
   },
   mounted() {
-    this.getStudents();
+    this.getClasses();
   },
   methods: {
-    getStudents() {
+    getClasses() {
       axios
-        .get("/students")
+        .get("/sClasses")
         .then((response) => {
-          this.students = response.data.students;
-          console.log(this.students);
+          this.classes = response.data.sClasses;
+          console.log(this.classes);
         })
         .catch((error) => {
           console.log(error);
