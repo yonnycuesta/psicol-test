@@ -10,7 +10,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::with('studentClasses')->get();
+        $students = Student::with('studentClasses')->orderBy('created_at', 'desc')->paginate(4);
         if ($students->count() > 0) {
             return response()->json([
                 'students' => $students

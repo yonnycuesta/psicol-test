@@ -27,7 +27,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="classe in classes" :key="classe.id">
+                <tr v-for="classe in classes.data" :key="classe.id">
                     <td>{{ classe.day }}</td>
                     <td>{{ classe.subject.name }}</td>
                     <td>{{ classe.hour }}</td>
@@ -40,6 +40,16 @@
                     </td>
                 </tr>
               </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="7">
+                    <pagination
+                      :data="classes"
+                      @pagination-change-page="getClasses"
+                    ></pagination>
+                  </td>
+                </tr>
+              </tfoot>
             </table>
           </div>
         </div>
@@ -56,16 +66,16 @@ export default {
   data() {
     return {
       name: "",
-      classes: [],
+      classes: {},
     };
   },
   mounted() {
     this.getClasses();
   },
   methods: {
-    getClasses() {
+    getClasses(page = 1) {
       axios
-        .get("/sClasses")
+        .get("/sClasses?page=" + page)
         .then((response) => {
           this.classes = response.data.sClasses;
           console.log(this.classes);

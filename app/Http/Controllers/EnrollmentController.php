@@ -13,7 +13,7 @@ class EnrollmentController extends Controller
 {
     public function index()
     {
-        $enrollments = Enrollment::with('student', 'sClass')->get();
+        $enrollments = Enrollment::with('student', 'sClass')->orderBy('created_at', 'desc')->paginate(6);
         if ($enrollments->count() > 0) {
             return response()->json([
                 'enrollments' => $enrollments

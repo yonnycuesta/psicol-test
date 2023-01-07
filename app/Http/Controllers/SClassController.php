@@ -11,7 +11,7 @@ class SClassController extends Controller
 
     public function index()
     {
-        $sClasses = sClass::with('teacher', 'subject', 'student')->get();
+        $sClasses = sClass::with('teacher', 'subject', 'student')->orderBy('created_at', 'desc')->paginate(6);
         if ($sClasses->count() > 0) {
             return response()->json([
                 'sClasses' => $sClasses

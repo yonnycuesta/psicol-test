@@ -1,19 +1,11 @@
 <template>
   <div class="container">
     <div class="row justify-content-center">
-      <!-- <div class="col-md-10">
-        <div class="card">
-          <div class="card-header">Estudiante Component</div>
-          <div class="card-body">
-            I'm a student component. Soy un componente de estudiante.
-            {{ name }}
-            <input type="text" v-model="name" class="form-control" />
-          </div>
-        </div>
-      </div> -->
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header">Listado de Estudiantes</div>
+          <div class="card-header">Listado de Estudiantes
+            <router-link href="#" to="/students/create" class="btn btn-primary float-right">Nuevo</router-link>
+          </div>
           <div class="card-body">
             <table class="table">
               <thead>
@@ -28,7 +20,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="student in students" :key="student.id">
+                <tr v-for="student in students.data" :key="student.id">
                     <td>{{ student.dni }}</td>
                     <td>{{ student.name }}</td>
                     <td>{{ student.email }}</td>
@@ -45,6 +37,16 @@
                     </td>
                 </tr>
               </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="7">
+                    <pagination
+                      :data="students"
+                      @pagination-change-page="getStudents"
+                    ></pagination>
+                  </td>
+                </tr>
+              </tfoot>
             </table>
           </div>
         </div>
@@ -61,16 +63,16 @@ export default {
   data() {
     return {
       name: "",
-      students: [],
+      students: {},
     };
   },
   mounted() {
     this.getStudents();
   },
   methods: {
-    getStudents() {
+    getStudents(page = 1) {
       axios
-        .get("/students")
+        .get("/students?page=" + page)
         .then((response) => {
           this.students = response.data.students;
           console.log(this.students);

@@ -8,7 +8,7 @@ import './bootstrap';
 import { createApp } from 'vue';
 import axios from 'axios';
 import {router} from './routes/index';
-
+import 'toastr/build/toastr.min.css';
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
@@ -19,20 +19,27 @@ const app = createApp({});
 
 import CourseComponent from './components/CourseComponent.vue';
 import HomeComponent from './components/HomeComponent.vue';
+
 import StudentComponent from './components/StudentComponent.vue';
+import StudentCreateComponent from './components/creates/StudentCreateComponent.vue';
+
 import TeacherComponent from './components/TeacherComponent.vue';
 import SubjectComponent from './components/SubjectComponent.vue';
+
 import ClassComponent from './components/ClassComponent.vue';
 import EnrollmentComponent from './components/EnrollmentComponent.vue';
 
 app.component('course-component', CourseComponent);
 app.component('home-component', HomeComponent);
 app.component('student-component', StudentComponent);
+app.component('student-create-component', StudentCreateComponent);
 app.component('teacher-component', TeacherComponent);
 app.component('subject-component', SubjectComponent);
 app.component('class-component', ClassComponent);
 app.component('enrollment-component', EnrollmentComponent);
 
+import { Bootstrap5Pagination } from 'laravel-vue-pagination';
+app.component('pagination', Bootstrap5Pagination);
 // API URL
 axios.defaults.baseURL = 'http://localhost:8000/api';
 

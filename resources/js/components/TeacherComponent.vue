@@ -28,7 +28,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="teacher in teachers" :key="teacher.id">
+                <tr v-for="teacher in teachers.data" :key="teacher.id">
                     <td>{{ teacher.dni }}</td>
                     <td>{{ teacher.name }}</td>
                     <td>{{ teacher.email }}</td>
@@ -45,6 +45,16 @@
                     </td>
                 </tr>
               </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="7">
+                    <pagination
+                      :data="teachers"
+                      @pagination-change-page="getTeachers"
+                    ></pagination>
+                  </td>
+                </tr>
+              </tfoot>
             </table>
           </div>
         </div>
@@ -55,22 +65,21 @@
 
 <script>
 import axios from "axios";
-
 export default {
   name: "TeacherComponent",
   data() {
     return {
       name: "",
-      teachers: [],
+      teachers: {},
     };
   },
   mounted() {
     this.getTeachers();
   },
   methods: {
-    getTeachers() {
+    getTeachers(page = 1) {
       axios
-        .get("/teachers")
+        .get("/teachers?page=" + page)
         .then((response) => {
           this.teachers = response.data.teachers;
           console.log(this.teachers);

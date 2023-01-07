@@ -10,7 +10,7 @@ class TeacherController extends Controller
 {
     public function index()
     {
-        $teachers = Teacher::with('subjects','sClass')->get();
+        $teachers = Teacher::with('subjects','sClass')->orderBy('created_at', 'desc')->paginate(4);
         if ($teachers->count() > 0) {
             return response()->json([
                 'teachers' => $teachers

@@ -29,7 +29,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="subject in subjects" :key="subject.id">
+                <tr v-for="subject in subjects.data" :key="subject.id">
                     <td>{{ subject.code }}</td>
                     <td>{{ subject.name }}</td>
                     <td>{{ subject.description }}</td>
@@ -47,6 +47,16 @@
                     </td>
                 </tr>
               </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="8">
+                    <pagination
+                      :data="subjects"
+                      @pagination-change-page="getSubjects"
+                    ></pagination>
+                  </td>
+                </tr>
+              </tfoot>
             </table>
           </div>
         </div>
@@ -63,16 +73,16 @@ export default {
   data() {
     return {
       name: "",
-      subjects: [],
+      subjects: {},
     };
   },
   mounted() {
     this.getSubjects();
   },
   methods: {
-    getSubjects() {
+    getSubjects(page = 1) {
       axios
-        .get("/subjects")
+        .get("/subjects?page=" + page)
         .then((response) => {
           this.subjects = response.data.subjects;
           console.log(this.subjects);

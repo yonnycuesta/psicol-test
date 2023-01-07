@@ -26,7 +26,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="enrollment in enrollments" :key="enrollment.id">
+                <tr v-for="enrollment in enrollments.data" :key="enrollment.id">
                   <td>
                     {{
                       enrollment.student.name +
@@ -48,6 +48,16 @@
                   </td>
                 </tr>
               </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="7">
+                    <pagination
+                      :data="enrollments"
+                      @pagination-change-page="getEnrollments"
+                    ></pagination>
+                  </td>
+                </tr>
+              </tfoot>
             </table>
           </div>
         </div>
@@ -64,16 +74,16 @@ export default {
   data() {
     return {
       name: "",
-      enrollments: [],
+      enrollments: {},
     };
   },
   mounted() {
     this.getEnrollments();
   },
   methods: {
-    getEnrollments() {
+    getEnrollments(page = 1) {
       axios
-        .get("/enrollments")
+        .get("/enrollments?page=" + page)
         .then((response) => {
           this.enrollments = response.data.enrollments;
           console.log(this.enrollments);

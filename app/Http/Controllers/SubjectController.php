@@ -11,7 +11,7 @@ class SubjectController extends Controller
     
     public function index()
     {
-        $subjects = Subject::with('teacher')->get();
+        $subjects = Subject::with('teacher')->orderBy('created_at', 'desc')->paginate(6);
         if ($subjects->count() > 0) {
             return response()->json([
                 'subjects' => $subjects
