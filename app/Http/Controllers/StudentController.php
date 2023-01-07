@@ -22,6 +22,22 @@ class StudentController extends Controller
         }
     }
 
+    // obtener las materias que tiene el estudiante
+    public function showSubjects($id)
+    {
+        // Obtener las materia de cada clase que tiene el estudiante
+        $student = Student::with('subjects')->where('id', $id)->get();
+        if ($student->count() > 0) {
+            return response()->json([
+                'student' => $student
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'No Student found'
+            ], 404);
+        }
+    }
+
     public function store(StudentCreateRequest $request)
     {
         try {

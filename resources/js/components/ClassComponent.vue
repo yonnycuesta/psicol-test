@@ -13,7 +13,8 @@
       </div> -->
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header">Listado de Clases</div>
+          <div class="card-header">Listado de Clases
+          </div>
           <div class="card-body">
             <table class="table">
               <thead>

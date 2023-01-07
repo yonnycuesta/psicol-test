@@ -2,9 +2,14 @@ import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
     {
-        path: '/subjects',
+        path: '/home',
         name: 'subjects',
         component: () => import("../components/SubjectComponent.vue")
+    },
+    {
+        path: '/subjects/create',
+        name: 'subjects.create',
+        component: () => import("../components/creates/SubjectCreateComponent.vue")
     },
     {
         path: '/students',
@@ -20,6 +25,11 @@ const routes = [
         path: '/teachers',
         name: 'teachers',
         component: () => import("../components/TeacherComponent.vue")
+    },
+    {
+        path: '/teachers/create',
+        name: 'teachers.create',
+        component: () => import("../components/creates/TeacherCreateComponent.vue")
     },
     {
         path: '/classes',

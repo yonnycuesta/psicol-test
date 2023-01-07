@@ -1,19 +1,46 @@
 <template>
   <div class="container">
-    <div class="row justify-content-center">
-      <!-- <div class="col-md-10">
-        <div class="card">
-          <div class="card-header">Estudiante Component</div>
-          <div class="card-body">
-            I'm a teacher component. Soy un componente de estudiante.
-            {{ name }}
-            <input type="text" v-model="name" class="form-control" />
+     <div
+      class="modal fade"
+      id="modalSubjects"
+      tabindex="-1"
+      aria-labelledby="modalSubjects"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalSubjects">Marerias Impartidas</h5>
+            <button
+              type="button"
+              class="close"
+              @click="closeModalSubject()"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">...</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              @click="closeModalSubject()"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
-      </div> -->
+      </div>
+    </div>
+    <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header">Listado de Profesores</div>
+          <div class="card-header">Listado de Profesores
+            <router-link href="#" to="/teachers/create" class="btn btn-primary float-right">Nuevo</router-link>
+          </div>
           <div class="card-body">
             <table class="table">
               <thead>
@@ -39,7 +66,7 @@
                         <a href="#" class="btn btn-dark m-1" title="Ver Clases">
                             <i class="fas fa-eye">C</i>
                         </a>
-                        <a href="#" class="btn btn-secondary m-1" title="Ver Materias">
+                        <a href="#" class="btn btn-secondary m-1" @click="showModalSubject(teacher.id)" title="Ver Materias">
                             <i class="fas fa-eye">M</i>
                         </a>
                     </td>
@@ -71,6 +98,7 @@ export default {
     return {
       name: "",
       teachers: {},
+      subjects: [],
     };
   },
   mounted() {
@@ -87,6 +115,23 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+
+    showModalSubject(id) {
+      axios
+        .get("/teachers/subjects/" + id)
+        .then((response) => {
+          this.subjects = response.data.teacher;
+          console.log('Te subjects', this.subjects);
+          $("#modalSubjects").modal("show");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    closeModalSubject() {
+      $("#modalSubjects").modal("hide");
     },
   },
 };

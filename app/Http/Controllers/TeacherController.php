@@ -22,6 +22,36 @@ class TeacherController extends Controller
         }
     }
 
+    // Obtener las materias que tiene el profesor
+    public function showSubjects($id)
+    {
+        // Obtener las materia de cada clase que tiene el profesor
+        $teacher = Teacher::with('subjects')->where('id', $id)->get();
+        if ($teacher->count() > 0) {
+            return response()->json([
+                'teacher' => $teacher
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'No Teacher found'
+            ], 404);
+        }
+    }
+
+    // obtener todos los profesores
+    public function show(){
+        $teachers = Teacher::with('subjects','sClass')->orderBy('created_at', 'desc')->get();
+        if ($teachers->count() > 0) {
+            return response()->json([
+                'teachers' => $teachers
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'No Teachers found'
+            ], 404);
+        }
+    }
+
     public function store(TeacherCreateRequest $request)
     {
         try {

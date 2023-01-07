@@ -19,10 +19,7 @@
               <thead>
                 <tr>
                   <th scope="col">Estudiante</th>
-                  <th scope="col">Clases</th>
                   <th scope="col">Fecha</th>
-                  <th scope="col">Estado</th>
-                  <th scope="col">Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -34,18 +31,8 @@
                       enrollment.student.lastname
                     }}
                   </td>
-                  <td></td>
                   <td>{{ enrollment.date_enrolled }}</td>
-                  <td></td>
-                  <td>
-                    <a
-                      href="#"
-                      class="btn btn-secondary m-1"
-                      title="Ver detalles"
-                    >
-                      <i class="fas fa-eye"> D</i>
-                    </a>
-                  </td>
+               
                 </tr>
               </tbody>
               <tfoot>

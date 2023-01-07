@@ -13,7 +13,9 @@
       </div> -->
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header">Listado de Materias</div>
+          <div class="card-header">Listado de Materias
+            <router-link href="#" to="/subjects/create" class="btn btn-primary float-right">Nuevo</router-link>
+          </div>
           <div class="card-body">
             <table class="table">
               <thead>
@@ -41,7 +43,7 @@
                     </td>
                     <td>{{ subject.teacher.name }}</td>
                     <td>
-                        <a href="#" class="btn btn-danger m-1" title="Eliminar Materia">
+                        <a href="#" class="btn btn-danger m-1" @click="deleteSubject(subject.id)" title="Eliminar Materia">
                             <i class="fas fa-trash"></i>
                         </a>
                     </td>
@@ -67,6 +69,7 @@
 
 <script>
 import axios from "axios";
+import toastr from "toastr";
 
 export default {
   name: "SubjectComponent",
@@ -89,6 +92,18 @@ export default {
         })
         .catch((error) => {
           console.log(error);
+        });
+    },
+    deleteSubject(id) {
+      axios
+        .delete("/subjects/" + id)
+        .then((response) => {
+          this.getSubjects();
+          toastr.info(response.data.message);
+        })
+        .catch((error) => {
+          console.log(error);
+          toastr.error(error.response.data.message);
         });
     },
   },
