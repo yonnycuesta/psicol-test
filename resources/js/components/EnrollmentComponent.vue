@@ -15,6 +15,7 @@
               <thead>
                 <tr>
                   <th scope="col">Estudiante</th>
+                  <th scope="col">Estudiante DNI</th>
                   <th scope="col">Fecha</th>
                 </tr>
               </thead>
@@ -27,6 +28,7 @@
                       enrollment.student.lastname
                     }}
                   </td>
+                  <td>{{ enrollment.student.dni }}</td>
                   <td>{{ enrollment.date_enrolled }}</td>
                
                 </tr>

@@ -22,13 +22,13 @@
                 <div class="col-md-7">
                   <div class="form-group">
                     <label for="student">Estudiante </label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Ingrese el DNI del estudiante"
-                        v-model="dni"
-                        @keyup="getStudentClasses()"
-                      />
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Ingrese el DNI del estudiante"
+                      v-model="dni"
+                      @keyup="getStudentClasses()"
+                    />
                   </div>
                 </div>
                 <div class="col-md-5">
@@ -39,10 +39,17 @@
                 </div>
                 <div class="col-md-6" v-if="allClass.length > 0">
                   <div class="form-group">
-                    <label for="teacher_id">Listado de clases a matricular</label><br>
+                    <label for="teacher_id"
+                      >Listado de clases a matricular</label
+                    ><br />
                     <select class="form-control" multiple>
-                      <option v-for="classs in allClass" :value="classs.id" :key="classs.id">
-                        {{ classs.day }} : {{ classs.hour }} , {{ classs.subject.name }}
+                      <option
+                        v-for="classs in allClass"
+                        :value="classs.id"
+                        :key="classs.id"
+                      >
+                        {{ classs.day }} : {{ classs.hour }} ,
+                        {{ classs.subject.name }}
                       </option>
                     </select>
                   </div>
@@ -79,17 +86,17 @@ export default {
   mounted() {
     console.log("Component mounted.");
   },
-  
+
   methods: {
-     getStudentClasses() {
+    getStudentClasses() {
       axios
         .get("students/classes/" + this.dni)
         .then((response) => {
           this.allClass = response.data.classes;
           this.studentId = response.data.classes[0].studentId;
-         if (this.allClass.length > 0) {
+          if (this.allClass.length > 0) {
             toastr.success("Se encontraron clases para el estudiante");
-          } 
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -109,9 +116,12 @@ export default {
         .catch((error) => {
           console.log(error);
           if (error.response.status == 400) {
-            toastr.info("El estudiante ya esta matriculado");
+            toastr.info(error.response.data.message);
           }
-           if (error.response.status == 401) {
+          if (error.response.status == 401 && this.allClass.length > 0) {
+            toastr.info(error.response.data.message);
+          }
+          if (error.response.status == 500) {
             toastr.info(error.response.data.message);
           }
         });

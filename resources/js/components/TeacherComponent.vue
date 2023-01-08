@@ -134,12 +134,10 @@ export default {
     },
 
     showModalSubject(id) {
-      $("#modalSubjects").modal("show");
       axios
         .get("/teachers/subjects/" + id)
         .then((response) => {
           this.subjects = response.data.subjects;
-          console.log('Te subjects', this.subjects);
           $("#modalSubjects").modal("show");
         })
         .catch((error) => {

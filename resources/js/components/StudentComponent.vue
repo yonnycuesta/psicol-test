@@ -85,9 +85,6 @@
                   <td>{{ student.address }}</td>
                   <td>{{ student.city }}</td>
                   <td>
-                    <a href="#" class="btn btn-dark m-1" title="Ver Clases">
-                      <i class="fas fa-eye"> C</i>
-                    </a>
                     <button
                       class="btn btn-secondary m-1"
                       @click="showModalSubject(student.id)"

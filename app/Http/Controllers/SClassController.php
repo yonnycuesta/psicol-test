@@ -30,11 +30,12 @@ class SClassController extends Controller
             if ($sClassExists->count() > 0) {
                 return response()->json([
                     'message' => 'El profesor ya tiene una clase ese dia y hora'
-                ], 400);
+                ], 405);
             } else {
                 $sClass = sClass::create($request->all());
                 return response()->json([
-                    'sClass' => $sClass
+                    'sClass' => $sClass,
+                    'message' => 'Class created successfully'
                 ], 201);
             }
         } catch (\Exception $e) {
