@@ -17,23 +17,20 @@ import 'toastr/build/toastr.min.css';
 
 const app = createApp({});
 
-import HomeComponent from './components/HomeComponent.vue';
-
 import StudentComponent from './components/StudentComponent.vue';
 import StudentCreateComponent from './components/creates/StudentCreateComponent.vue';
-
+import StudentClassCreateComponent from './components/creates/StudentClassCreateComponent.vue';
 import TeacherComponent from './components/TeacherComponent.vue';
 import TeacherCreateComponent from './components/creates/TeacherCreateComponent.vue';
 import SubjectComponent from './components/SubjectComponent.vue';
 import SubjectCreateComponent from './components/creates/SubjectCreateComponent.vue';
-
 import ClassComponent from './components/ClassComponent.vue';
 import EnrollmentComponent from './components/EnrollmentComponent.vue';
 import EnrollmentCreateComponent from './components/creates/EnrollmentCreateComponent.vue';
 
-app.component('home-component', HomeComponent);
 app.component('student-component', StudentComponent);
 app.component('student-create-component', StudentCreateComponent);
+app.component('student-class-create-component', StudentClassCreateComponent);
 app.component('teacher-component', TeacherComponent);
 app.component('teacher-create-component', TeacherCreateComponent);
 app.component('subject-component', SubjectComponent);

@@ -44,7 +44,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="semester">Semestre</label>
-                    <select class="form-control" v-model="semester">
+                    <select class="form-control form-select" v-model="semester">
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>

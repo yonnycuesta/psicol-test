@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="teacher_id">Profesor {{ teacher_id }}</label>
+                    <label for="teacher_id">Profesor</label>
                     <select
                       class="form-control form-select"
                       v-model="teacherId"

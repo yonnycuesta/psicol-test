@@ -22,6 +22,11 @@ const routes = [
         component: () => import("../components/creates/StudentCreateComponent.vue")
     },
     {
+        path: '/students-class/create',
+        name: 'students-class.create',
+        component: () => import("../components/creates/StudentClassCreateComponent.vue")
+    },
+    {
         path: '/teachers',
         name: 'teachers',
         component: () => import("../components/TeacherComponent.vue")

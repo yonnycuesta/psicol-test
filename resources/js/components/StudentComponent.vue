@@ -60,8 +60,13 @@
             <router-link
               href="#"
               to="/students/create"
-              class="btn btn-primary float-right"
+              class="btn btn-primary float-right mr-2"
               >Nuevo <i class="fas fa-plus"></i></router-link>
+               <router-link
+              href="#"
+              to="/students-class/create"
+              class="btn btn-info float-right text-white mr-2"
+              >Unirme a una clase <i class="fas fa-plus"></i></router-link>
           </div>
           <div class="card-body">
             <table class="table">

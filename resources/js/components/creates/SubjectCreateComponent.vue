@@ -38,7 +38,7 @@
                 <div class="col-md-6">
                  <div class="form-group">
                     <label for="teacher_id">Profesor</label>
-                    <select class="form-control" v-model="teacher_id">
+                    <select class="form-control form-select" v-model="teacher_id">
                       <option v-for="teacher in teachers" :key="teacher" :value="teacher.id">{{teacher.name}} {{teacher.lastname}}</option>
                     </select>
                   </div>
@@ -46,7 +46,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="credits">Créditos</label>
-                    <select class="form-control" v-model="credits">
+                    <select class="form-control form-select" v-model="credits">
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -57,7 +57,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="type">Tipo</label>
-                    <select class="form-control" v-model="type">
+                    <select class="form-control form-select" v-model="type">
                       <option value="obligatory">Obligatoria</option>
                       <option value="elective">Electiva</option>
                     </select>
