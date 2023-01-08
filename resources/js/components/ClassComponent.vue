@@ -3,7 +3,11 @@
     <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header">Listado de Clases</div>
+          <div class="card-header">Listado de Clases
+            <router-link href="#" to="/classes/create" class="btn btn-primary float-right mr-2">Nueva
+            <i class="fas fa-plus"></i>
+            </router-link>
+          </div>
           <div class="card-body">
             <table class="table">
               <thead>
@@ -13,7 +17,6 @@
                   <th scope="col">Hora</th>
                   <th scope="col">Profesor</th>
                   <th scope="col">N° Estudiantes</th>
-                  <th scope="col">Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -23,11 +26,6 @@
                     <td>{{ classe.hour }}</td>
                     <td>{{ classe.teacher.name }}</td>
                     <td>{{ classe.student.length }}</td>
-                    <td>
-                        <a href="#" class="btn btn-secondary m-1" title="Ver Estudiantes">
-                            <i class="fas fa-eye"> E</i>
-                        </a>
-                    </td>
                 </tr>
               </tbody>
               <tfoot>

@@ -29,6 +29,7 @@ import SubjectCreateComponent from './components/creates/SubjectCreateComponent.
 
 import ClassComponent from './components/ClassComponent.vue';
 import EnrollmentComponent from './components/EnrollmentComponent.vue';
+import EnrollmentCreateComponent from './components/creates/EnrollmentCreateComponent.vue';
 
 app.component('home-component', HomeComponent);
 app.component('student-component', StudentComponent);
@@ -39,6 +40,7 @@ app.component('subject-component', SubjectComponent);
 app.component('subject-create-component', SubjectCreateComponent);
 app.component('class-component', ClassComponent);
 app.component('enrollment-component', EnrollmentComponent);
+app.component('enrollment-create-component', EnrollmentCreateComponent);
 
 import { Bootstrap5Pagination } from 'laravel-vue-pagination';
 app.component('pagination', Bootstrap5Pagination);

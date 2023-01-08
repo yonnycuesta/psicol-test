@@ -46,6 +46,11 @@ const routes = [
         name: 'enrollments',
         component: () => import("../components/EnrollmentComponent.vue")
     },
+    {
+        path: '/enrollments/create',
+        name: 'enrollments.create',
+        component: () => import("../components/creates/EnrollmentCreateComponent.vue")
+    }
 ]
 
 export const router = createRouter({

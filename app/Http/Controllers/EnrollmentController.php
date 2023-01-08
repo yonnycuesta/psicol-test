@@ -40,14 +40,14 @@ class EnrollmentController extends Controller
         }
         if ($totalCredits < 7) {
             return response()->json([
-                'message' => 'Tú no puedes matricularte, necesitas al menos 7 créditos, tienes ' . $totalCredits . ' créditos en total, agregue más clases'
-            ], 400);
+                'message' => 'Tú no puedes matricularte, necesitas al menos 7 créditos, tienes ' . $totalCredits . ' créditos en total, inscríbete en más clases'
+            ], 401);
         } else {
             try {
                 $enrollment = new Enrollment();
                 $enrollment->student_id = $request->student_id;
                 $enrollment->all_sclasses = json_encode($idClasses);
-                $enrollment->date_enrolled = date("F j, Y, g:i a");
+                $enrollment->date_enrolled = $request->date_enrolled;
                 // Comprobar si el estudiante ya cuenta con una matricula
                 $enrollmentExists = Enrollment::where('student_id', $request->student_id)->get();
                 if ($enrollmentExists->count() > 0) {

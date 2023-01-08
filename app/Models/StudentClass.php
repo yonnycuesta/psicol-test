@@ -23,4 +23,5 @@ class StudentClass extends Model
     {
         return $this->belongsTo(sClass::class);
     }
+    
 }

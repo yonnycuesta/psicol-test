@@ -43,4 +43,5 @@ class SClassController extends Controller
             ], 500);
         }
     }
+
 }

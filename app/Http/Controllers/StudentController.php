@@ -42,6 +42,27 @@ class StudentController extends Controller
         }
     }
 
+    public function showStudentsClass($dni)
+    {
+        $student = Student::with('studentClasses.sClass')->where('dni', $dni)->get();
+        $classes = [];
+        foreach ($student[0]->studentClasses as $studentClass) {
+            $classes[] = $studentClass->sClass;
+            $classes[count($classes) - 1]['teacherName'] = $studentClass->sClass->teacher->name . ' ' . $studentClass->sClass->teacher->lastname;
+            $classes[count($classes) - 1]['subjectName'] = $studentClass->sClass->subject->name;
+            $classes[count($classes) - 1]['studentId'] = $student[0]->id;
+        }
+        if ($student->count() > 0) {
+            return response()->json([
+                'classes' => $classes
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'No Student found'
+            ], 404);
+        }
+    }
+
     public function store(StudentCreateRequest $request)
     {
         try {

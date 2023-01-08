@@ -31,9 +31,11 @@
               <div class="card-body">
                 <p class="card-text">Área de conocimiento: {{ subject.knowledge_area}}</p>
                 <p class="card-text">Créditos: {{ subject.credits }}</p>
-                <p class="card-text">Tipo: {{ subject.type }}</p>
+                <p class="card-text">Tipo: 
+                  <span v-if="subject.type == 'obligatory'" class="text-danger">Obligatoria</span>
+                  <span v-else class="text-success">Electiva</span>
+                </p>
                 <p class="card-text">Código: {{ subject.code }}</p>
-                <p class="card-text">Profesor: {{subject.teacherName}}</p>
               </div>
             </div>
             </div>
@@ -80,11 +82,8 @@
                     <td>{{ teacher.address }}</td>
                     <td>{{ teacher.city }}</td>
                     <td>
-                        <a href="#" class="btn btn-dark m-1" title="Ver Clases">
-                            <i class="fas fa-eye">C</i>
-                        </a>
                         <a href="#" class="btn btn-secondary m-1" @click="showModalSubject(teacher.id)" title="Ver Materias">
-                            <i class="fas fa-eye">M</i>
+                            <i class="fas fa-eye"> M</i>
                         </a>
                     </td>
                 </tr>
@@ -139,7 +138,7 @@ export default {
       axios
         .get("/teachers/subjects/" + id)
         .then((response) => {
-          this.subjects = response.data.teacher;
+          this.subjects = response.data.subjects;
           console.log('Te subjects', this.subjects);
           $("#modalSubjects").modal("show");
         })

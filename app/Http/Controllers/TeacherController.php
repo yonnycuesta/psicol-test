@@ -25,11 +25,14 @@ class TeacherController extends Controller
     // Obtener las materias que tiene el profesor
     public function showSubjects($id)
     {
-        // Obtener las materia de cada clase que tiene el profesor
         $teacher = Teacher::with('subjects')->where('id', $id)->get();
+        $subjects = [];
+        foreach ($teacher[0]->subjects as $subject) {
+            $subjects[] = $subject;
+        }
         if ($teacher->count() > 0) {
             return response()->json([
-                'teacher' => $teacher
+                'subjects' => $subjects
             ], 200);
         } else {
             return response()->json([

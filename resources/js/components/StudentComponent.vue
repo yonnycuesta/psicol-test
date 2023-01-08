@@ -62,9 +62,6 @@
               to="/students/create"
               class="btn btn-primary float-right"
               >Nuevo <i class="fas fa-plus"></i></router-link>
-            <router-link href="#" to="/classes/create" class="btn btn-dark float-right mr-2">Unirme a una clase
-            <i class="fas fa-plus"></i>
-            </router-link>
           </div>
           <div class="card-body">
             <table class="table">
@@ -89,14 +86,14 @@
                   <td>{{ student.city }}</td>
                   <td>
                     <a href="#" class="btn btn-dark m-1" title="Ver Clases">
-                      <i class="fas fa-eye">C</i>
+                      <i class="fas fa-eye"> C</i>
                     </a>
                     <button
                       class="btn btn-secondary m-1"
                       @click="showModalSubject(student.id)"
                       title="Ver Materias"
                     >
-                      <i class="fas fa-eye">M</i>
+                      <i class="fas fa-eye"> M</i>
                     </button>
                   </td>
                 </tr>

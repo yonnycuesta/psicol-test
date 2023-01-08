@@ -34,3 +34,5 @@ Route::apiResource('enrollments', EnrollmentController::class);
 Route::get('teachers/subjects/{id}', [TeacherController::class, 'showSubjects']);
 Route::get('students/subjects/{id}', [StudentController::class, 'showSubjects']);
 
+Route::get('students/classes/{dni}', [StudentController::class, 'showStudentsClass']);
+
