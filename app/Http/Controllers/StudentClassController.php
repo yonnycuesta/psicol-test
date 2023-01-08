@@ -29,17 +29,17 @@ class StudentClassController extends Controller
             if ($studentClassExists->count() > 0) {
                 return response()->json([
                     'message' => 'Student already has this class'
-                ], 400);
+                ], 401);
             } else {
                 $studentClass = StudentClass::create($request->all());
                 return response()->json([
                     'studentClass' => $studentClass,
-                    'message' => 'Student Class created successfully'
+                    'message' => 'Student Joined Class successfully'
                 ], 201);
             }
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Error creating Student Class'
+                'message' => 'Error joining Student Class'
             ], 500);
         }
     }

@@ -78,13 +78,12 @@ class StudentController extends Controller
         }
     }
 
-    public function show($id)
+    public function show()
     {
-        // Obtener las clases que tiene el estudiante y obtener la materia de cada clase
-        $student = Student::with('studentClasses.sClass.subject')->where('id', $id)->get();
-        if ($student->count() > 0) {
+        $students = Student::orderBy('name', 'asc')->get();
+        if ($students->count() > 0) {
             return response()->json([
-                'student' => $student
+                'students' => $students
             ], 200);
         } else {
             return response()->json([

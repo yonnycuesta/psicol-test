@@ -45,4 +45,20 @@ class SClassController extends Controller
         }
     }
 
+    public function show(){
+        $sClasses = sClass::with('teacher', 'subject')->orderBy('created_at', 'desc')->get();
+        foreach ($sClasses as $sClass) {
+            $sClass->name = $sClass->subject->name . ' - ' . $sClass->teacher->name;
+        }
+        if ($sClasses->count() > 0) {
+            return response()->json([
+                'sClasses' => $sClasses
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'No Classes found'
+            ], 404);
+        }
+    }
+
 }
